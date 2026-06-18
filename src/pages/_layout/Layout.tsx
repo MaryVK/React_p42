@@ -3,7 +3,7 @@ import './ui/Layout.css';
 
 export default function Layout() {
     return <>    
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
         <div className="container-fluid">
             <a className="navbar-brand" href="#">Navbar</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +29,11 @@ export default function Layout() {
         </div>
     </nav>
 
-    <Outlet />
+    <main>
+        <Outlet />
+    </main>    
     
-    <footer>
+    <footer className='border-top bg-body-tertiary'>
         &copy; IT STEP, 2026
     </footer>
     </>;

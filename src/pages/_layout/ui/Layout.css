@@ -1,0 +1,16 @@
+#root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+main {
+    flex: 1;
+}
+footer {
+    padding: 1em 2em;
+}
+.nav-link {
+    font-size: larger;
+}
