@@ -12,10 +12,13 @@ export default function Layout() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link to="/"><i className="bi bi-house"></i></Link>
+                        <Link to="/" className="nav-link"><i className="bi bi-house"></i></Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
+                        <Link to="/group" className="nav-link"><i className="bi bi-cart"></i></Link>
+                    </li>                
+                    <li className="nav-item">
+                        <Link to="/no-page" className="nav-link"><i className="bi bi-sign-stop"></i></Link>
                     </li>                
                 </ul>
                 <form className="d-flex" role="search">
@@ -24,13 +27,6 @@ export default function Layout() {
                 </form>
             </div>
         </div>
-    </nav>
-
-
-    <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/group">About</Link> |{" "}
-        <Link to="/no-page">404</Link> |{" "}
     </nav>
 
     <Outlet />
