@@ -1,7 +1,10 @@
+import { useParams } from 'react-router-dom';
 import './ui/Group.css';
 
 export default function Group() {
+    const {slug} = useParams();
+
     return <div>
-        <h1>Product group page</h1>
+        <h1>{slug}</h1>
     </div>
 }
