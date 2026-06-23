@@ -1,3 +1,5 @@
+// данные товара
+
 export default interface IProductBrief {
     id: string,
     name: string,

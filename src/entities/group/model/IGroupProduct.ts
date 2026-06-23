@@ -1,3 +1,5 @@
+// объединяет группу и её товары
+
 import type IGroup from "./IGroup";
 import type IProductBrief from "./IProductBrief";
 
