@@ -86,6 +86,61 @@ const groups:Array<IGroup> = [
     }
 ];
 
+const groupProducts:Record<string,IGroupProduct> = {
+    "game": {
+        group: groups[0],
+        products: [
+            {id: "1-1", name: "Fortnite", description: "Fortnite: Battle Royale",
+            price: 1.0, imageUrl: "/img/Gemini_Generated_Image_Fortnite.png", 
+            stock: -1, slug: "fortnite"},
+            {id: "1-2", name: "Goat Simulator", // description: "Fortnite: Battle Royale",
+            price: 49.99, imageUrl: "/img/Gemini_Generated_Image_Goat_Simulator_3.png", 
+            actionPrice: 29.99, stock: -1 },
+        ]
+    },
+
+     "watches": {
+        group: groups[2],
+        products: [
+            {
+                id: "3-1",
+                name: "Smart Watches for Women",
+                description: '1.91" HD Fitness Tracker (Answer/Make Calls), IP68 Waterproof, 120+ Sport Modes with Heart Rate and Sleep Monitor, Fitness Watch for iPhone/Android',
+                price: 129.99,
+                imageUrl: "/img/81al6p-pKuL._AC_UY218_.jpg",                
+            },
+            {
+                id: "3-2",
+                name: "SAMSUNG Galaxy FIT 3 [2024]",
+                description: '1.6" AMOLED Display | 14 Days Battery Life | 100+ Watchfaces | 100+ Exercise Modes | International Model - (Gray)',
+                price: 45,
+                imageUrl: "/img/41KyLKvro-L._AC_UY218_.jpg",                
+            },
+            {
+                id: "3-3",
+                name: "Samsung Galaxy Watch 8 (2025)",
+                description: '40mm Bluetooth Smartwatch, Cushion Design, Fitness Tracker, Sleep Coaching, Running Coach, Energy Score, Heart Rate Tracking, Graphite [US Version, 2 Yr Warranty]',
+                price: 223.01,
+                imageUrl: "/img/61IpkAmVjwL._AC_UY218_.jpg",                
+            },
+            {
+                id: "3-4",
+                name: "Garmin vívoactive 5",
+                description: 'Health and Fitness GPS Smartwatch, AMOLED Display, Up to 11 Days of Battery, Ivory',
+                price: 169.95,
+                imageUrl: "/img/610Jl4dUB7L._AC_UY218_.jpg",                
+            },
+            {
+                id: "3-5",
+                name: "Smart Watch for Men Women",
+                description: '1.91"Smartwatch with Answer/Make Call, Fitness Tracker with 100+ Sport Modes, Watches IP68 Waterproof/Heart Rate/Sleep Monitor/Pedometer, Activity Tracker for Android iOS',
+                price: 13.99,
+                imageUrl: "/img/71y74-RugbL._AC_UY218_.jpg",                
+            },
+        ]
+    }
+}
+
 
 const products:Array<IProductBrief> = [
     {
@@ -93,7 +148,7 @@ const products:Array<IProductBrief> = [
         name: "Samsung Galaxy S26 Ultra",
         description: "Premium Android smartphone with Galaxy AI",
         slug: "samsung-galaxy-s26-ultra",
-        imageUrl: "/img/products_4-1.jpg",
+        imageUrl: "/img/products_4-1.png",
         price: 1117.316,
         stock: 12
     },
@@ -102,7 +157,7 @@ const products:Array<IProductBrief> = [
         name: "Apple iPhone 16 Pro Max",
         description: "512GB, Black Titanium - Unlocked (Renewed)",
         slug: "apple-iPhone-16-Pro-Max",
-        imageUrl: "/img/products_4-2.jpg",
+        imageUrl: "/img/products_4-2.webp",
         price: 788.97,
         stock: 8
     },
@@ -111,7 +166,7 @@ const products:Array<IProductBrief> = [
         name: "Samsung Galaxy S26 Ultra",
         description: "Unlocked Android Smartphone, 512GB, Privacy Display, Galaxy AI",
         slug: "Samsung-Galaxy-S26-Ultra",
-        imageUrl: "/img/products_4-3.jpg",
+        imageUrl: "/img/products_4-3(2).webp",
         price: 1156.14,
     },
     {
@@ -119,7 +174,7 @@ const products:Array<IProductBrief> = [
         name: "Apple iPhone 17 Pro",
         description: "US Version, 256GB, eSIM, Cosmic Orange for AT&T (Renewed)",
         slug: "Apple-iPhone-17-Pro",
-        imageUrl: "/img/products_4-4.jpg",
+        imageUrl: "/img/products_4-4.webp",
         price: 1249.72,
         actionPrice: 1.123
     },
@@ -128,7 +183,7 @@ const products:Array<IProductBrief> = [
         name: "Google Pixel 10 Pro XL",
         description: "Unlocked Android Smartphone with Gemini, Your Google AI Assistant",
         slug: "Google-Pixel-10-Pro-XL",
-        imageUrl: "/img/products_4-5.jpg",
+        imageUrl: "/img/products_4-5.webp",
         price: 823.55,
         stock: 20
     },
@@ -137,7 +192,7 @@ const products:Array<IProductBrief> = [
         name: "Moto G Power 5G",
         description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
         slug: "Moto-G-Power-5G",
-        imageUrl: "/img/products_4-6.jpg",
+        imageUrl: "/img/products_4-6.webp",
         price: 119.99,
         actionPrice: 100,
         stock: 15
@@ -147,7 +202,7 @@ const products:Array<IProductBrief> = [
         name: "Motorola Moto G Power - 2025",
         description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
         slug: "Motorola-Moto-G-Power",
-        imageUrl: "/img/products_4-7.jpg",
+        imageUrl: "/img/products_4-7.webp",
         price: 259.99,
         stock: 18
     },
@@ -156,7 +211,7 @@ const products:Array<IProductBrief> = [
         name: "Motorola Moto G Play LTE",
         description: "Unlocked | Made for US 4/64GB | 50MP Camera | Sapphire Blue",
         slug: "Motorola-Moto-G-Play-LTE",
-        imageUrl: "/img/products_4-8.jpg",
+        imageUrl: "/img/products_4-8.webp",
         price: 105.87,
         actionPrice: 95
     },
@@ -165,7 +220,7 @@ const products:Array<IProductBrief> = [
         name: "Apple iPhone 13",
         description: "128GB, Blue - Unlocked (Renewed)",
         slug: "Apple-iPhone-13",
-        imageUrl: "/img/products_4-9.jpg",
+        imageUrl: "/img/products_4-9.webp",
         price: 450,
         stock: 23
     },
@@ -174,7 +229,7 @@ const products:Array<IProductBrief> = [
         name: "Motorola Moto G Stylus 5G",
         description: "2024 | Unlocked | Made for US 8/256GB | 50MP Camera | Caramel Latte | 2024",
         slug: "Motorola-Moto-G-Stylus-5G",
-        imageUrl: "/img/products_4-10.jpg",
+        imageUrl: "/img/products_4-10.webp",
         price: 181.99,
         stock: 15
     }

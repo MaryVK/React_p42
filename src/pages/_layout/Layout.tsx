@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './ui/Layout.css';
+import AppContext from '../../features/_context/AppContext';
 
 export default function Layout() {
     return <>    

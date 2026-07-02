@@ -14,3 +14,14 @@ footer {
 .nav-link {
     font-size: larger;
 }
+
+.cart-nav {
+    position: relative;
+}
+
+.cart-nav span {
+    position: absolute;
+    right: 3px;
+    top:0;
+    font-size: smaller;
+}

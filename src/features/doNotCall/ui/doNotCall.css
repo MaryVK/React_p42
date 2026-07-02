@@ -1,0 +1,22 @@
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-top: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.doNotCall input {
+    width: 10px;
+    height: 13px;
+    cursor: pointer;
+}
+
+.doNotCall span {
+    font-size: 14px;
+    color: #333;
+}
