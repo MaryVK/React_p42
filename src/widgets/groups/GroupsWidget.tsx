@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-// import './ui/GroupsWidget.css';
+import './ui/GroupsWidget.css';
+import type IGroup from '../../entities/group/model/IGroup';
+import GroupApi from '../../entities/group/api/GroupApi';
 import { Link } from 'react-router-dom';
-import type IGroup from '../../../entities/group/model/IGroup';
-import GroupApi from '../../../entities/group/api/GroupApi';
- 
+
 export default function GroupsWidget() {
     const [groups, setGroups] = useState<Array<IGroup>>([]);
     const cropRef = useRef<HTMLDivElement>(null);
@@ -51,8 +51,3 @@ export default function GroupsWidget() {
         </button>
     </div>;
 }
-/*
-Д.З. Реалізувати відображення підказок при затриманні миші на 
-віджеті товарних груп. Включити до підказки опис групи
-* "Перехід до групи" + назва групи + опис групи (з нового рядка)
-*/

@@ -90,12 +90,20 @@ const groupProducts:Record<string,IGroupProduct> = {
     "game": {
         group: groups[0],
         products: [
-            {id: "1-1", name: "Fortnite", description: "Fortnite: Battle Royale",
-            price: 1.0, imageUrl: "/img/Gemini_Generated_Image_Fortnite.png", 
-            stock: -1, slug: "fortnite"},
-            {id: "1-2", name: "Goat Simulator", // description: "Fortnite: Battle Royale",
-            price: 49.99, imageUrl: "/img/Gemini_Generated_Image_Goat_Simulator_3.png", 
-            actionPrice: 29.99, stock: -1 },
+            {id: "1-1", 
+            name: "Fortnite", 
+            description: "Fortnite: Battle Royale",
+            price: 1.0,
+            imageUrl: "/img/Gemini_Generated_Image_Fortnite.png", 
+            stock: -1, 
+            slug: "fortnite"},
+
+            {id: "1-2", 
+            name: "Goat Simulator", // description: "Fortnite: Battle Royale",
+            price: 49.99, 
+            imageUrl: "/img/Gemini_Generated_Image_Goat_Simulator_3.png", 
+            actionPrice: 29.99, 
+            stock: -1 },
         ]
     },
 
@@ -138,102 +146,106 @@ const groupProducts:Record<string,IGroupProduct> = {
                 imageUrl: "/img/71y74-RugbL._AC_UY218_.jpg",                
             },
         ]
+    },
+
+    "smartphones": {
+        group: groups[3],
+        products: [
+            {
+                id: "4-1",
+                name: "Samsung Galaxy S26 Ultra",
+                description: "Premium Android smartphone with Galaxy AI",
+                slug: "samsung-galaxy-s26-ultra",
+                imageUrl: "/img/products_4-1.png",
+                price: 1117.316,
+                stock: 12
+            },
+            {
+                id: "4-2",
+                name: "Apple iPhone 16 Pro Max",
+                description: "512GB, Black Titanium - Unlocked (Renewed)",
+                slug: "apple-iPhone-16-Pro-Max",
+                imageUrl: "/img/products_4-2.webp",
+                price: 788.97,
+                stock: 8
+            },
+            {
+                id: "4-3",
+                name: "Samsung Galaxy S26 Ultra",
+                description: "Unlocked Android Smartphone, 512GB, Privacy Display, Galaxy AI",
+                slug: "Samsung-Galaxy-S26-Ultra",
+                imageUrl: "/img/products_4-3.webp",
+                price: 1156.14,
+            },
+            {
+                id: "4-4",
+                name: "Apple iPhone 17 Pro",
+                description: "US Version, 256GB, eSIM, Cosmic Orange for AT&T (Renewed)",
+                slug: "Apple-iPhone-17-Pro",
+                imageUrl: "/img/products_4-4.webp",
+                price: 1249.72,
+                actionPrice: 1.123
+            },
+            {
+                id: "4-5",
+                name: "Google Pixel 10 Pro XL",
+                description: "Unlocked Android Smartphone with Gemini, Your Google AI Assistant",
+                slug: "Google-Pixel-10-Pro-XL",
+                imageUrl: "/img/products_4-5.webp",
+                price: 823.55,
+                stock: 20
+            },
+            {
+                id: "4-6",
+                name: "Moto G Power 5G",
+                description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
+                slug: "Moto-G-Power-5G",
+                imageUrl: "/img/products_4-6.webp",
+                price: 119.99,
+                actionPrice: 100,
+                stock: 15
+            },
+            {
+                id: "4-7",
+                name: "Motorola Moto G Power - 2025",
+                description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
+                slug: "Motorola-Moto-G-Power",
+                imageUrl: "/img/products_4-7.webp",
+                price: 259.99,
+                stock: 18
+            },
+            {
+                id: "4-8",
+                name: "Motorola Moto G Play LTE",
+                description: "Unlocked | Made for US 4/64GB | 50MP Camera | Sapphire Blue",
+                slug: "Motorola-Moto-G-Play-LTE",
+                imageUrl: "/img/products_4-8.webp",
+                price: 105.87,
+                actionPrice: 95  
+            },
+            {
+                id: "4-9",
+                name: "Apple iPhone 13",
+                description: "128GB, Blue - Unlocked (Renewed)",
+                slug: "Apple-iPhone-13",
+                imageUrl: "/img/products_4-9.webp",
+                price: 450,
+                stock: 23
+            },
+            {
+                id: "4-10",
+                name: "Motorola Moto G Stylus 5G",
+                description: "2024 | Unlocked | Made for US 8/256GB | 50MP Camera | Caramel Latte | 2024",
+                slug: "Motorola-Moto-G-Stylus-5G",
+                imageUrl: "/img/products_4-10.webp",
+                price: 181.99,
+             stock: 15
+            }
+        ]
     }
 }
 
 
-const products:Array<IProductBrief> = [
-    {
-        id: "4-1",
-        name: "Samsung Galaxy S26 Ultra",
-        description: "Premium Android smartphone with Galaxy AI",
-        slug: "samsung-galaxy-s26-ultra",
-        imageUrl: "/img/products_4-1.png",
-        price: 1117.316,
-        stock: 12
-    },
-    {
-        id: "4-2",
-        name: "Apple iPhone 16 Pro Max",
-        description: "512GB, Black Titanium - Unlocked (Renewed)",
-        slug: "apple-iPhone-16-Pro-Max",
-        imageUrl: "/img/products_4-2.webp",
-        price: 788.97,
-        stock: 8
-    },
-    {
-        id: "4-3",
-        name: "Samsung Galaxy S26 Ultra",
-        description: "Unlocked Android Smartphone, 512GB, Privacy Display, Galaxy AI",
-        slug: "Samsung-Galaxy-S26-Ultra",
-        imageUrl: "/img/products_4-3(2).webp",
-        price: 1156.14,
-    },
-    {
-        id: "4-4",
-        name: "Apple iPhone 17 Pro",
-        description: "US Version, 256GB, eSIM, Cosmic Orange for AT&T (Renewed)",
-        slug: "Apple-iPhone-17-Pro",
-        imageUrl: "/img/products_4-4.webp",
-        price: 1249.72,
-        actionPrice: 1.123
-    },
-    {
-        id: "4-5",
-        name: "Google Pixel 10 Pro XL",
-        description: "Unlocked Android Smartphone with Gemini, Your Google AI Assistant",
-        slug: "Google-Pixel-10-Pro-XL",
-        imageUrl: "/img/products_4-5.webp",
-        price: 823.55,
-        stock: 20
-    },
-    {
-        id: "4-6",
-        name: "Moto G Power 5G",
-        description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
-        slug: "Moto-G-Power-5G",
-        imageUrl: "/img/products_4-6.webp",
-        price: 119.99,
-        actionPrice: 100,
-        stock: 15
-    },
-    {
-        id: "4-7",
-        name: "Motorola Moto G Power - 2025",
-        description: "2024 | Unlocked | Made for US 8/128GB | 50MP Camera | Midnight Blue",
-        slug: "Motorola-Moto-G-Power",
-        imageUrl: "/img/products_4-7.webp",
-        price: 259.99,
-        stock: 18
-    },
-    {
-        id: "4-8",
-        name: "Motorola Moto G Play LTE",
-        description: "Unlocked | Made for US 4/64GB | 50MP Camera | Sapphire Blue",
-        slug: "Motorola-Moto-G-Play-LTE",
-        imageUrl: "/img/products_4-8.webp",
-        price: 105.87,
-        actionPrice: 95
-    },
-    {
-        id: "4-9",
-        name: "Apple iPhone 13",
-        description: "128GB, Blue - Unlocked (Renewed)",
-        slug: "Apple-iPhone-13",
-        imageUrl: "/img/products_4-9.webp",
-        price: 450,
-        stock: 23
-    },
-    {
-        id: "4-10",
-        name: "Motorola Moto G Stylus 5G",
-        description: "2024 | Unlocked | Made for US 8/256GB | 50MP Camera | Caramel Latte | 2024",
-        slug: "Motorola-Moto-G-Stylus-5G",
-        imageUrl: "/img/products_4-10.webp",
-        price: 181.99,
-        stock: 15
-    }
-];
 
 export default class GroupApi {
     
@@ -259,13 +271,11 @@ export default class GroupApi {
                 () => {
                     let group = groups.find(g => g.slug == slug);
                     if(group) {
-                        const currentProducts = products.filter(
-                            p => p.id.startsWith(group.id + "-")
-                        );
-
                         resolve({
                             group,
-                            products: currentProducts
+                            products: typeof groupProducts[slug] == 'undefined'
+                            ? []
+                            : groupProducts[slug].products,
                         });
                     }
                     else {

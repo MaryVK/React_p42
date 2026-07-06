@@ -1,5 +1,15 @@
 .round-button {
     border-radius: 50%;
-    background-color: bisque;
-    padding: 0.5em 0.75em;
+    border-width: 1px;
+    border-color: lightgray;
+    background-color: rgb(213, 213, 213);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    font-weight: 700;
+    font-size: large;
+    width: 1.75em;
+    height: 1.75em;
+    padding-bottom: .2em;
 }

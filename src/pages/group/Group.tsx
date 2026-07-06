@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import type IGroupProduct from '../../entities/group/model/IGroupProduct';
 import GroupApi from '../../entities/group/api/GroupApi';
 import ProductCard from './ui/ProductCard';
-import GroupsWidget from '../../widgets/groups/ui/GroupsWidget';
+import GroupsWidget from '../../widgets/groups/GroupsWidget';
 
 export default function Group() {
     const {slug} = useParams();

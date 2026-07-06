@@ -1,0 +1,32 @@
+.privacy-page {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ece4e4b4;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(12, 12, 12, 0.158);
+}
+
+.privacy-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #212529;
+}
+
+.privacy-page h2 {
+    margin-top: 30px;
+    color: #0d6efd;
+}
+
+.privacy-page p {
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.privacy-date {
+    color: #1d1e20;
+    text-align: end;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+
+}

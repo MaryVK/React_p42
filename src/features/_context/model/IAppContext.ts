@@ -1,6 +1,7 @@
-import type ICartItem from "../../../entities/cart/model/ICartItem";
+import type ICart from "../../../entities/cart/model/ICart";
+
 
 export default interface IAppContext {
-    cart: Array<ICartItem>,
-    setCart(cart: Array<ICartItem>): void,
+    cart: ICart,
+    setCart(cart: ICart): void,
 }
