@@ -21,6 +21,20 @@ export default function ProductCard({productBrief}:{productBrief:IProductBrief})
         });
     };
 
+function truncateText(text: string, maxLength: number) {
+    if(text.length <= maxLength) {
+        return text;
+    }
+
+    let result = "";
+
+    for (let i = 0; i < maxLength; i++) {
+        result += text[i];
+    }
+
+    return result + "...";
+}
+
     
     return <div className="col" >
     <div className="card h-100">
@@ -33,8 +47,8 @@ export default function ProductCard({productBrief}:{productBrief:IProductBrief})
             </div>            
         </Link>
         <div className="card-body">
-            <h5 className="card-title">{productBrief.name}</h5>
-            <p className="card-text">{productBrief.description}</p>
+            <h5 className="card-title">{truncateText(productBrief.name, 30)}</h5>
+            <p className="card-text">{truncateText(productBrief.description, 50)}</p>
         </div>
         <div className="card-footer d-flex justify-content-between align-items-center">
             <div>{productBrief.actionPrice

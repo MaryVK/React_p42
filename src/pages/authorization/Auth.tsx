@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './ui/Auth.css';
+import SignUp from './ui/sign_up/SignUp';
 
 export default function Auth() {
     // переключатель 
@@ -23,6 +24,14 @@ function SignIn() {
     const [password, setPassword] = useState<string>("");
     const [isFormValid, setFromValid] = useState<boolean>(false);
     const [isRememberMe, setRememberMe] = useState<boolean>(false);
+
+    useEffect(() => {
+    }, [login, password]);
+
+    const signInClick = () => {
+
+    };
+    
 
     // отслеживапем какие-то изменения - хук useEffect(() =>
     useEffect(() => {
@@ -57,13 +66,11 @@ function SignIn() {
 
         </div>
 
-        <button className={`btn ${isFormValid ? 'btn-success' : 'btn-secondary'}`} >Enter</button>
+        <button className={`btn ${isFormValid ? 'btn-success' : 'btn-secondary'}`}
+              onClick={isFormValid ? signInClick : undefined} >Enter</button>
     </div>
 }
 
-function SignUp() {
-    return <>SignUp</>
-}
 
 /*
 Работа с формами на примере задач с 'Auth'

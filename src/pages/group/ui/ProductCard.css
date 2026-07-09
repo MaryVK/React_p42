@@ -5,3 +5,17 @@
     font-size: smaller;
     line-height: 0.5;
 }
+
+.card-title {
+    line-height: 20px;
+    /* 2 строки */
+    max-height: 48px;    
+    overflow: hidden; 
+}
+
+.card-text {
+    line-height: 20px;
+    /* 3 строки */
+    max-height: 60px;
+    overflow: hidden;
+}
