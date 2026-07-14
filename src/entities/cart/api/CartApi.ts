@@ -1,22 +1,17 @@
 import type ICart from "../model/ICart";
 
 export default class CartApi {
-    static calculateCart(cart:ICart) : Promise<ICart> {
-        return new Promise<ICart>((resolvePath, reject) => {
+
+    static calculateCart(cart:ICart): Promise<ICart> {
+        return new Promise<ICart>((resolve, reject) => {
             setTimeout(() => {
                 let newCart = {...cart};
                 newCart.price = 0;
-
                 for(let ci of newCart.cartItems) {
-                    if(ci.quantity == 1) {
-                        ci.price = ci.product.price;
-                    }
-                    else {
-                        ci.price = ci.product.price * ci.quantity * 0.9;
-                        newCart.price += ci.price;
-                    }
+                    if(ci.quantity == 1) ci.price = ci.product.price;
+                    else ci.price = ci.product.price * ci.quantity * 0.9;
+                    newCart.price += ci.price;
                 }
-
                 if(newCart.price > 1000) {
                     newCart.price *= 0.95;
                     newCart.discount = "5%";
@@ -24,7 +19,7 @@ export default class CartApi {
                 else {
                     newCart.discount = undefined;
                 }
-                resolvePath(newCart);
+                resolve(newCart);
             }, 500);
         });
     }

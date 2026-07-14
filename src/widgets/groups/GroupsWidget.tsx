@@ -39,10 +39,18 @@ export default function GroupsWidget() {
 
         <div className='groups-crop' ref={cropRef}>
             <div className='groups-container'>
-                {groups.map(g => <Link to={`/group/${g.slug}`} key={g.id}>
-                    <img src={g.imageUrl} alt={g.name} />
-                    {g.name}
-                </Link>)}
+                {groups.map(g => (
+                    <Link to={`/group/${g.slug}`} key={g.id} className="group-link">
+                       <img src={g.imageUrl} alt={g.name} />
+                       {g.name}
+                       <span className="texttip">
+            Перехід до групи "{g.name}"
+            <br />
+            {g.description || ''}
+        </span>
+    </Link>
+))}
+
             </div>
         </div>
 

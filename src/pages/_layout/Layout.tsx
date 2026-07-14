@@ -1,16 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './ui/Layout.css';
 import AppContext from '../../features/_context/AppContext';
+import { clearRememberedUser } from '../../entities/user/lib/UserLib';
 
 
 //  ссылки на другие странички
 
 export default function Layout() {
-const {cart} = useContext(AppContext);
+const {cart, user, setCart, isLoading, setUser} = useContext(AppContext);
 
-    return <>    
-    <nav className="navbar navbar-expand-sm bg-body-tertiary border-bottom">
+const logoutClick = () => {
+    clearRememberedUser();
+    setUser(undefined);
+}
+useEffect(() => {
+    document.body.style.overflow = isLoading ? "hidden" : "auto";
+}, [isLoading]);
+
+    return <>
+         <nav className="navbar navbar-expand-sm bg-body-tertiary border-bottom">
         <div className="container-fluid">
             <a className="navbar-brand" href="#">Navbar</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,17 +43,26 @@ const {cart} = useContext(AppContext);
                 <form className="d-flex" role="search">
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button className="btn btn-outline-success" type="button">Search</button>
-                </form>             
-                <span className="nav-item">
-                    <Link to="/auth" className="nav-link"><i className="bi bi-person-square"></i></Link>
-                </span>  
-
+                </form>
+                <div className="d-flex align-items-center" >
+                    <span className="nav-item">
+                        <Link to="/auth" className="nav-link" title={user ? "Кабінет користувача" : "Вхід до сайту"}>
+                            <i className="bi bi-person-square fs-5"></i>
+                        </Link>
+                    </span>
+                    {user && <span className="nav-item ms-2" role='button' onClick={logoutClick}>
+                        <i className="bi bi-box-arrow-right fs-4"></i>
+                    </span>}
+                </div>
             </div>
         </div>
-    </nav>
+    </nav>   
+
 
     <main>
-        <Outlet />
+        
+        <Outlet /> 
+        {isLoading && <div className='preloader'><img src="/img/loading.gif" alt="loading"/></div>}
     </main>    
     
     <footer className='border-top bg-body-tertiary'>
@@ -53,3 +71,7 @@ const {cart} = useContext(AppContext);
     </footer>
     </>;
 }
+
+
+
+

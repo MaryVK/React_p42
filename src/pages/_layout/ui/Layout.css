@@ -9,6 +9,24 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+.preloader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 95vh;
+    background-color: #bbbbbbbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.preloader img {
+    max-width: 25vw;
+    max-height: 25vw;
 }
 footer {
     padding: 1em 2em;
@@ -16,11 +34,9 @@ footer {
 .nav-link {
     font-size: larger;
 }
-
 .cart-nav {
     position: relative;
 }
-
 .cart-nav span {
     position: absolute;
     right: 3px;

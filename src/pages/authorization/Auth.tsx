@@ -1,22 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './ui/Auth.css';
 import SignUp from './ui/sign_up/SignUp';
+import UserApi from '../../entities/user/api/UserApi';
+import AppContext from '../../features/_context/AppContext';
+import Profile from './ui/profile/Profile';
+import { rememberUser } from '../../entities/user/lib/UserLib';
+
+
+const PageModes = {
+    signIn: 'signIn',
+    signUp: 'signUp',
+    profil: 'profil',
+    forgotPassword: 'forgotPassword',
+} as const;
+
+type PageModes = (typeof PageModes)[keyof typeof PageModes];
 
 export default function Auth() {
+    const {user} = useContext(AppContext);
+
+
     // переключатель 
-    const [pageMode, setPageMode] = useState<string>("signIn");
-    return <div className='auth-container'>
+    const [pageMode, setPageMode] = useState<PageModes>(user ? PageModes.profil : PageModes.signIn);
+    return user ? <Profile />:<div className='auth-container'>
         <div className='auth-form'>
             <h2 className='auth-header'>
-                {pageMode == "signIn" ? "Enter form" : "Registration"}
+                {pageMode == PageModes.signIn ? "Enter form" : "Registration"}
             </h2>
             <div className=' d-flex justify-content-between mx-3 gap-3'>
-                <button className={`flex-1 btn ${pageMode == "signIn" ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signIn")}>Enter</button>
-                <button className={`flex-1 btn ${pageMode == "signUp" ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signUp")}>Registration</button>
+                <button className={`flex-1 btn ${PageModes.signIn ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signIn")}>Enter</button>
+                <button className={`flex-1 btn ${PageModes.signUp ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signUp")}>Registration</button>
             </div>
-        {pageMode == "signIn" ? <SignIn /> : <SignUp />}
+            {pageMode == PageModes.signIn ? <SignIn /> : <SignUp />}
         </div>
-    </div>;
+    </div>
     
 }
 function SignIn() {
@@ -24,14 +41,15 @@ function SignIn() {
     const [password, setPassword] = useState<string>("");
     const [isFormValid, setFromValid] = useState<boolean>(false);
     const [isRememberMe, setRememberMe] = useState<boolean>(false);
+    const {setUser} = useContext(AppContext);
 
     useEffect(() => {
+        setFromValid(
+            login.length > 2 && 
+            password.length > 2
+        );
     }, [login, password]);
 
-    const signInClick = () => {
-
-    };
-    
 
     // отслеживапем какие-то изменения - хук useEffect(() =>
     useEffect(() => {
@@ -40,9 +58,20 @@ function SignIn() {
         );
     }, [login, password]);
 
-    useEffect(() => {
-        // setRememberMe(isFormValid ? )
-    })
+     const signInClick = () => {
+        UserApi.authenticate(login, password)
+        .then(u => {
+            // if(rememberMe)
+            // забезпечуємо збереження даних користувача у постійному сховищі браузера
+            rememberUser(u);
+            setUser(u);
+        })
+        .catch(err => {
+            if(err === 401) {
+                alert("У вході відмовлено. Перевірьте введені дані")
+            }
+        });
+    };
 
     
 

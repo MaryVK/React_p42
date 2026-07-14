@@ -100,10 +100,12 @@ const groupProducts:Record<string,IGroupProduct> = {
 
             {id: "1-2", 
             name: "Goat Simulator", // description: "Fortnite: Battle Royale",
+            description: "asdgvewg",
             price: 49.99, 
             imageUrl: "/img/Gemini_Generated_Image_Goat_Simulator_3.png", 
             actionPrice: 29.99, 
-            stock: -1 },
+            stock: -1,
+            slug: ""},
         ]
     },
 
@@ -260,7 +262,7 @@ export default class GroupApi {
            //delay → через сколько миллисекунд
             setTimeout(
                 () => resolve(groups),  // успешно заверш. промис и возвращ. групс
-                500
+                1500
             )
         } );
     }
@@ -282,7 +284,7 @@ export default class GroupApi {
                         reject("Not Found");
                     }
                 },
-                500
+                1000
             )
         } );
     }

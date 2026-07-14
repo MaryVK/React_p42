@@ -22,5 +22,33 @@
 .groups-crop {
     /* width: 100%; */
     flex: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
+
+.groups-container a {
+    position: relative;
+    display: inline-block;
+}
+
+.group-link {
+    position: relative;
+    display: inline-block;
+}
+
+.texttip {
+    display: none;
+    position: absolute;
+    bottom: 140px;
+    width: max-content;
+    max-width: 145px;
+
+    background-color: #484c50a2;
+    color: #fff;
+    padding: 3px 5px;
+    font-size: 12px;
+}
+
+.group-link:hover .texttip {
+    display: block;
+}
+

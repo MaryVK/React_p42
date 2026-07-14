@@ -1,15 +1,29 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import Counter from "../../widgets/counter/Counter";
 import type IGroup from "../../entities/group/model/IGroup";
 import GroupApi from "../../entities/group/api/GroupApi";
 import { Link } from "react-router-dom";
+import AppContext from "../../features/_context/AppContext";
+
+const preload_grp:Array<IGroup> = Array.from({length: 10}, (_, i) => {
+    return {
+        id: i + 1 + "",
+        name: "Loading...",
+        description: "Loading...",
+        slug: "",
+        imageUrl: "/img/blank.png"
+    }
+});
 
 export default function Home() {
-    const [groups, setGroups] = useState<Array<IGroup>>([]);
+    const [groups, setGroups] = useState<Array<IGroup>>(preload_grp);
+    const {setLoading} = useContext(AppContext);
 
     useEffect(() => {
-        console.log("Home created");
-        GroupApi.allGroups().then(setGroups);
+        setLoading(true);
+        GroupApi.allGroups()
+        .then(setGroups)
+        .finally(() => {setLoading(false);});
 
         return () => {console.log("Home destroyed");};
     }, []);

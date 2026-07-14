@@ -10,6 +10,14 @@ const  AppContext = createContext<IAppContext>({
         throw "setCart: Not implemented";
 
     },
+    user: undefined,
+    setUser(_) {
+        throw "setUser: Not implemented";
+    },
+    isLoading: false,
+    setLoading(_) {
+        throw "setLoading: Not implemented";
+    }
 });
 
 export default AppContext;
