@@ -1,0 +1,37 @@
+.profile-container {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px lightgrey;
+    border-radius: 10px;
+}
+
+.profile-container h2 {
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    /* margin: 20px 0; */
+    margin: 15px  0  30px; 
+}
+
+.delete-section {
+    display: flex;
+    flex-direction: column;
+    gap:  15px;
+    /* margin-top: 20px; */
+}
+
+.delete-section label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-section button {
+    margin-top: 25px;
+}
+
+.btn {
+    margin-left: 35px;
+}

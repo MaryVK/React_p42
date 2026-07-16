@@ -6,6 +6,7 @@ import Group from "../../pages/group/Group";
 import Auth from "../../pages/authorization/Auth";
 import Privacy from "../../pages/privacy/Privacy";
 import NotFound from "../../pages/not_found/NotFound";
+import Profile from "../../pages/authorization/ui/profile/Profile";
 
 export default function  Router() {
     return <BrowserRouter>    
@@ -19,6 +20,7 @@ export default function  Router() {
      
                 <Route index element={<Home />} />
                 <Route path='auth' element={<Auth />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="cart" element={<Cart/>} />
                 <Route path="group/:slug" element={<Group />} />
                 {/* значение после group/ сохр. в параметр slug   slug = "game"*/}

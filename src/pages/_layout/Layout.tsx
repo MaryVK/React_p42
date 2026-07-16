@@ -42,8 +42,29 @@ useEffect(() => {
                         <Link to="/no-page" className="nav-link"><i className="bi bi-sign-stop"></i></Link>
                     </li>
                     <li className="nav-item">
-                        <span onClick={() => showAlert({message: "Hello"})} className="nav-link"><i className="bi bi-sign-stop"></i></span>
-                    </li>                      
+                        <span onClick={() => showAlert({message: "Hello"})} className="nav-link"><i className="bi bi-key"></i></span>
+                    </li> 
+                    <li className="nav-item">
+                        <span onClick={() => showAlert({
+                            message: "Hello",
+                            buttons: [{title: "Ok"}], 
+                            isCancelable: true,
+                        })} className="nav-link">
+                                <i className='bi bi-key'></i>
+                            </span>
+                    </li>  
+
+                    <li className="nav-item">
+                        <span onClick={() => showAlert({
+                            message: "Hello",
+                            buttons: [
+                                {title: "Yes", action:() => console.log("Yes")},
+                                {title: "No", action:() => console.log("No")},
+                            ]
+                            })} className="nav-link">
+                                <i className='bi bi-key'></i>
+                            </span>
+                    </li>                    
                 </ul>
                 <form className="d-flex" role="search">
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

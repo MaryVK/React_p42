@@ -10,18 +10,18 @@ import { rememberUser } from '../../entities/user/lib/UserLib';
 const PageModes = {
     signIn: 'signIn',
     signUp: 'signUp',
-    profil: 'profil',
+    profile: 'profile',
     forgotPassword: 'forgotPassword',
 } as const;
 
 type PageModes = (typeof PageModes)[keyof typeof PageModes];
 
-export default function Auth() {
+export default function Auth() { 
     const {user} = useContext(AppContext);
 
 
     // переключатель 
-    const [pageMode, setPageMode] = useState<PageModes>(user ? PageModes.profil : PageModes.signIn);
+    const [pageMode, setPageMode] = useState<PageModes>(user ? PageModes.profile : PageModes.signIn);
     return user ? <Profile />:<div className='auth-container'>
         <div className='auth-form'>
             <h2 className='auth-header'>
@@ -71,10 +71,12 @@ function SignIn() {
     }, [login, password]);
 
      const signInClick = () => {
+        console.log("signInClick");
         UserApi.authenticate(login, password)
         .then(u => {
             // if(rememberMe)
             // забезпечуємо збереження даних користувача у постійному сховищі браузера
+            console.log("User:", u);
             rememberUser(u);
             setUser(u);
         })

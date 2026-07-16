@@ -53,17 +53,34 @@ function CartItemView({ci}:{ci:ICartItem}) {
             // Для эффекта необходимо создать новый массив/ объект с копией данного [...cart]
         }
         else {
-            if(confirm("Delete?")) {
-                setCart({
-                    ...cart,  // заменяю старую корзинку новой
-                    cartItems: cart.cartItems.filter(   // старый cartItems заменяется новым // cart.cartItems - новый массив
-                        item => item.product.id !== ci.product.id
-                    )
-                });
+            // if(confirm("Delete?")) {
+            //     setCart({
+            //         ...cart,  // заменяю старую корзинку новой
+            //         cartItems: cart.cartItems.filter(   // старый cartItems заменяется новым // cart.cartItems - новый массив
+            //             item => item.product.id !== ci.product.id
+            //         )
+            //     });
+
+            showAlert({
+                title: "Подтверждение действий",
+                message: "Удалить с корзинки товар " + ci.product.name + "?",
+                isCancelable: true,
+                buttons: [
+                    {title: "Да", action: () => {
+                        setCart({
+                            ...cart,  // заменяю старую корзинку новой
+                            cartItems: cart.cartItems.filter(   // старый cartItems заменяется новым // cart.cartItems - новый массив
+                                item => item.product.id !== ci.product.id
+                        )
+                    })
+                    }},
+                    {title: "Нет"}
+                ]
+            });
 
             }
         }
-    }
+
     const fullPrice = ci.product.price * ci.quantity;
     return <div className='row mb-3'>
     <div className='col col-2'>
@@ -83,4 +100,8 @@ function CartItemView({ci}:{ci:ICartItem}) {
         </span>
     </div>
 </div>;
+}
+
+function showAlert(arg0: { title: string; message: string; isCancelable: boolean; buttons: ({ title: string; action: () => void; } | { title: string; })[]; }) {
+    throw new Error("Function not implemented.");
 }
