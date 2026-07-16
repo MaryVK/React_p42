@@ -25,13 +25,25 @@ export default function Auth() {
     return user ? <Profile />:<div className='auth-container'>
         <div className='auth-form'>
             <h2 className='auth-header'>
-                {pageMode == PageModes.signIn ? "Enter form" : "Registration"}
+                {pageMode == PageModes.signIn && "Enter form"}
+                {pageMode == PageModes.signUp && "Registration"}
+                {pageMode == PageModes.forgotPassword && "Forgot password"}
             </h2>
             <div className=' d-flex justify-content-between mx-3 gap-3'>
-                <button className={`flex-1 btn ${PageModes.signIn ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signIn")}>Enter</button>
-                <button className={`flex-1 btn ${PageModes.signUp ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signUp")}>Registration</button>
+                <button className={`flex-1 btn ${pageMode === PageModes.signIn ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signIn")}>Enter</button>
+                <button className={`flex-1 btn ${pageMode === PageModes.signUp ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setPageMode("signUp")}>Registration</button>
             </div>
-            {pageMode == PageModes.signIn ? <SignIn /> : <SignUp />}
+
+            {pageMode === PageModes.signIn && <SignIn />}
+            {pageMode === PageModes.signUp && <SignUp />}
+            {pageMode === PageModes.forgotPassword && <ForgotPassword />}
+
+            <div className='text-center mt-3'>
+                <button className='btn btn-link' onClick={() => setPageMode(PageModes.forgotPassword)}>
+                    Forgot password ?
+                </button>
+
+            </div>
         </div>
     </div>
     
@@ -72,7 +84,6 @@ function SignIn() {
             }
         });
     };
-
     
 
     return <div className='auth-form-content m-3 my-4'>
@@ -99,6 +110,39 @@ function SignIn() {
               onClick={isFormValid ? signInClick : undefined} >Enter</button>
     </div>
 }
+
+
+function ForgotPassword() {
+        const [email, setEmail] = useState("");
+        const [birthDate, setBirthDate] = useState("");
+        const [isFormValid, setFromValid] = useState(false);
+
+        useEffect(() => {
+            setFromValid(
+                email.length > 2 && 
+                birthDate.length > 0
+            );
+        }, [email, birthDate]);
+
+         return (
+        <div className='auth-form-content m-3 my-4'>
+            <div className='input-group mb-3'>
+                <input className='form-control' type='email' placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} />
+            </div>
+
+            <div className='input-group mb-3'>
+                <input className='form-control' type="date" value={birthDate} onChange={e => setBirthDate(e.target.value)} />
+            </div>
+
+            <button className={`btn ${isFormValid ? "btn-success" : "btn-secondary"}`}>
+                Restore password
+            </button>
+        </div>
+    );
+}
+
+   
+
 
 
 /*
