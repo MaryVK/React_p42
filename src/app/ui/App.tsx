@@ -7,11 +7,16 @@ import CartApi from "../../entities/cart/api/CartApi";
 import type IUser from '../../entities/user/model/IUser';
 import { getRememberedUser, } from '../../entities/user/lib/UserLib';
 import Router from './Router';
+import Alert from '../../features/alert/Alert';
+import type IAlertData from '../../features/alert/model/IAlertData';
 
 export default function App() {  // функция-компонент, HTML внутри React 
     const [cart, setCart] = useState<ICart>({cartItems: [], price: 0});
     const [user, setUser] = useState<IUser|undefined>();
     const [isLoading, setLoading] = useState<boolean>(false);
+    const [alertData, setAlertData] = useState<IAlertData|null>(null);
+    const schowAlert = setAlertData;
+
     const updateCart = (cart: ICart) : void => {
         //  перед изменением состояния производим запрос на вычисление скидок в корзинке
         CartApi.calculateCart(cart)
@@ -26,8 +31,9 @@ export default function App() {  // функция-компонент, HTML вн
     }, []);
 
     return (
-        <AppContext.Provider value={{cart, setCart: updateCart, user, setUser, isLoading, setLoading}}>
+        <AppContext.Provider value={{cart, setCart: updateCart, user, setUser, isLoading, setLoading, showAlert: setAlertData}}>
             <Router />
+            {alertData && <Alert data={alertData} />}
  </AppContext.Provider>
     );
 }

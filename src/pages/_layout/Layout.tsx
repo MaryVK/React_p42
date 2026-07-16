@@ -8,7 +8,7 @@ import { clearRememberedUser } from '../../entities/user/lib/UserLib';
 //  ссылки на другие странички
 
 export default function Layout() {
-const {cart, user, setCart, isLoading, setUser} = useContext(AppContext);
+const {cart, user, setCart, isLoading, setUser, showAlert} = useContext(AppContext);
 
 const logoutClick = () => {
     clearRememberedUser();
@@ -32,13 +32,18 @@ useEffect(() => {
                     </li>
                     <li className="nav-item">
                         <Link to="/cart" className="nav-link cart-nav">
-                            <span>{cart.cartItems.length}</span>
+                            <span className='cart-count'>
+                                {cart.cartItems.length}
+                            </span>
                             <i className="bi bi-cart"></i>
                         </Link>
                     </li>                
                     <li className="nav-item">
                         <Link to="/no-page" className="nav-link"><i className="bi bi-sign-stop"></i></Link>
-                    </li>                     
+                    </li>
+                    <li className="nav-item">
+                        <span onClick={() => showAlert({message: "Hello"})} className="nav-link"><i className="bi bi-sign-stop"></i></span>
+                    </li>                      
                 </ul>
                 <form className="d-flex" role="search">
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

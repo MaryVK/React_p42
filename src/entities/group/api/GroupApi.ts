@@ -1,5 +1,6 @@
 //  DAL - слой доступа к данным
 
+import Request from "../../_api_base/ApiBase";
 import type IGroup from "../model/IGroup";
 import type IGroupProduct from "../model/IGroupProduct";
 
@@ -256,43 +257,36 @@ export default class GroupApi {
     // Array<IGroup> - массив объектов типа IGroup
     static allGroups(): Promise<Array<IGroup>> {
         
-        return new Promise<Array<IGroup>>( (resolve, reject) => {
-            // setTimeout(callback, delay)
-            // callback→ что выполнить
-           //delay → через сколько миллисекунд
-            setTimeout(
-                () => resolve(groups),  // успешно заверш. промис и возвращ. групс
-                1500
-            )
-        } );
+        // return new Promise<Array<IGroup>>( (resolve, reject) => {
+        //     // setTimeout(callback, delay)
+        //     // callback→ что выполнить
+        //    //delay → через сколько миллисекунд
+        //     setTimeout(
+        //         () => resolve(groups),  // успешно заверш. промис и возвращ. групс
+        //         1500
+        //     )
+        // } );
+
+        return Request.getCached("/groups", undefined, groups) as Promise<Array<IGroup>>;
     }
 
     static groupDetails(slug:string): Promise<IGroupProduct> {   // Через некоторое время я верну объект типа IGroupProduct.
-        return new Promise<IGroupProduct>( (resolve, reject) => {
-            setTimeout(
-                () => {
-                    let group = groups.find(g => g.slug == slug);
-                    if(group) {
-                        resolve({
-                            group,
-                            products: typeof groupProducts[slug] == 'undefined'
-                            ? []
-                            : groupProducts[slug].products,
-                        });
-                    }
-                    else {
-                        reject("Not Found");
-                    }
-                },
-                1000
-            )
-        } );
+        return Request.getCached(
+            `/groups/${slug}`, 
+            undefined, {
+                group: groups.find(g => g.slug == slug),
+                products: typeof groupProducts[slug] == "undefined"
+                ? [] 
+                : groupProducts[slug].products,
+            } 
+        ) as Promise<IGroupProduct>;
     }
-
 }
+
 /*
 Д.З. Створити сторінку "Політика конфіденційності (Privacy)"
 Наповнити її стандартною інформацією (дозволяється ШІ)
 Розмістити посилання на неї в шаблоні сторінок для доступності
 з усіх сторінок сайту
+
 */

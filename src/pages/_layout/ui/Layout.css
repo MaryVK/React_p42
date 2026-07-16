@@ -36,6 +36,22 @@ footer {
 }
 .cart-nav {
     position: relative;
+    display: inline-block;
+}
+.cart-count {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 18px;
+    height: 18px;
+    background-color: rgba(3, 111, 3, 0.697);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 6px;
+
 }
 .cart-nav span {
     position: absolute;
