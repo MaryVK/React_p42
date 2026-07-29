@@ -20,7 +20,7 @@ export default class UserApi {
                 else {
                     reject(401);
                 }
-            }, 1000);
+            }, 5000);
 
         });
 

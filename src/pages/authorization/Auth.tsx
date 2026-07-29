@@ -14,6 +14,8 @@ const PageModes = {
     forgotPassword: 'forgotPassword',
 } as const;
 
+// оператор keyof берёт все ключи (имена свойств) из этой структуры.
+// keyof typeof PageModes превращается в список
 type PageModes = (typeof PageModes)[keyof typeof PageModes];
 
 export default function Auth() { 
@@ -49,11 +51,13 @@ export default function Auth() {
     
 }
 function SignIn() {
+    const [isLoading, setLoading] = useState<boolean>(false);
     const [login, setLogin] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isFormValid, setFromValid] = useState<boolean>(false);
     const [isRememberMe, setRememberMe] = useState<boolean>(false);
     const {setUser} = useContext(AppContext);
+    
 
     useEffect(() => {
         setFromValid(
@@ -71,6 +75,8 @@ function SignIn() {
     }, [login, password]);
 
      const signInClick = () => {
+        setLoading(true);
+
         console.log("signInClick");
         UserApi.authenticate(login, password)
         .then(u => {
@@ -84,33 +90,74 @@ function SignIn() {
             if(err === 401) {
                 alert("У вході відмовлено. Перевірьте введені дані")
             }
+        })
+        .finally(() => {
+            setLoading(false);
         });
     };
     
 
-    return <div className='auth-form-content m-3 my-4'>
+    return ( <div className='auth-form-content m-3 my-4'>
         <div className="input-group mb-3">
-            <span className="input-group-text" id="login-addon"><i className='bi bi-lock'></i></span>
+            <span className="input-group-text" 
+                  id="login-addon"> 
+                      <i className='bi bi-lock'></i>
+            </span>
            <input className='form-control'
-                type="text" placeholder="Login" 
-                value={login} onChange={e => setLogin(e.target.value)}
+                type="text" 
+                placeholder="Login" 
+                value={login} 
+                onChange={e => setLogin(e.target.value)}
                 aria-label="Username" aria-describedby="basic-addon1" />
         </div>
         <div className="input-group mb-3">
-            <span className="input-group-text" id="password-addon"><i className='bi bi-key'></i></span>
+            <span className="input-group-text" 
+                  id="password-addon">
+                    <i className='bi bi-key'></i>
+            </span>
             <input className='form-control'
-                type="password" placeholder="*******" 
-                value={password} onChange={e => setPassword(e.target.value)}
-                aria-label="Password" aria-describedby="password-addon" />
+                type="password" 
+                placeholder="*******" 
+                value={password} 
+                onChange={e => setPassword(e.target.value)}
+                aria-label="Password" 
+                aria-describedby="password-addon" />
         </div>
 
-        <div className='remember-me'>
+        <div className='remember-me mb-3'>
+            <input 
+                className='remember-me-input'
+                type="checkbox"
+                id='rememberMe'
+                checked={isRememberMe}
+                onChange={e => setRememberMe(e.target.checked)} 
+            />
 
+            <label
+                 className='form-check-label ms-2'
+                 htmlFor='rememberMe'>
+                    Remember me
+            </label>
         </div>
+
+        {isLoading && (
+            <div className='text-center mb-3'>
+                <div className='spinner-border text-success'>
+                    <span className='visually-hidden'>
+                        Loading...
+                    </span>
+                </div>
+            </div>
+        )}
 
         <button className={`btn ${isFormValid ? 'btn-success' : 'btn-secondary'}`}
-              onClick={isFormValid ? signInClick : undefined} >Enter</button>
+                // во время загрузки кнопка блокируется
+                disabled={!isFormValid || isLoading}
+                onClick={signInClick}>
+                {isLoading ? "Loading..." : "Enter"}
+        </button>
     </div>
+    );
 }
 
 
