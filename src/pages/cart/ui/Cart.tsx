@@ -7,8 +7,22 @@ import type ICartItem from "../../../entities/cart/model/ICartItem";
 export default function Cart() {
     const {cart} = useContext(AppContext);
 
+    let fullPrice = 0;
+
+    for (const item of cart.cartItems) {
+        fullPrice += item.product.price * item.quantity;
+    }
+
+    const benefit = fullPrice - cart.price;
+
     
     return <div className='row mx-3'>
+
+        { benefit > 0 && (
+            <div className="alert alert-success">
+                You save: <b>₴{benefit.pad2()}</b>
+            </div>
+        )}
         <div className='col col-8'>
             <h1>Shopping Cart</h1>
             {cart.cartItems.length == 0 
