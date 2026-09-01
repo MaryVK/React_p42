@@ -1,17 +1,14 @@
 import {useState} from 'react';
 import './SignUp.css';
+import type IUserSignupData from '../../../../entities/user/model/IUserSignupData';
+import UserApi from '../../../../entities/user/api/UserApi';
 
-interface IFormData {
-    login: string,
-    email: string,
-    password: string,
-    repeat: string,
-    isAgree: boolean,
-};
 
-const initialFormData:IFormData = {
+const initialFormData:IUserSignupData = {
+    name: "",
     login: "",
     email: "",
+    phone: "",
     password: "",
     repeat: "",
     isAgree: false,
@@ -25,21 +22,44 @@ function isEmailValid(email:string):boolean {
 const emailFeedback = "E-mail address must have symbols '@' and '.'";
 
 export default function SignUp() {
-    const [formData, setFormData] = useState<IFormData>(initialFormData);
+    const [formData, setFormData] = useState<IUserSignupData>(initialFormData);
 
     const valids = {
         email: isEmailValid(formData.email),
-    }
+    };
+
+    
 
     const isFormValid:boolean = formData.login.length > 2 &&
-         formData.password.length > 2;
+         formData.password.length > 2 &&
+         formData.name.length > 2 &&
+         formData.phone.length > 7 &&
          valids.email &&
          formData.password == formData.repeat && 
          formData.isAgree;
 
+    const signUpClick=() => {
+        UserApi.signUp(formData)
+        .then(() => {console.log("Sign Up OK")})
+        .catch(() => {console.log("Sign Up Fail")});
+        
+    }
+
     
 
     return <div className='reg-form-content mx-3 my-4'>
+        <div className="input-group mb-3">
+            <span className="input-group-text" id="name-addon"><i className='bi bi-person-badge'></i></span>
+           <input className={'form-control' + (formData.name.length == 0 ? "" : valids.email ? "is-valid" : "is-invalid")}
+                type="name" placeholder="E-mail" 
+                value={formData.name} onChange={e => setFormData({ ...formData, name:e.target.value})}
+                aria-label="User E-mail" aria-describedby="email-addon" />
+            <div className='invalid-feedback'>
+                {emailFeedback}
+            </div>
+        </div>
+
+
         <div className="input-group mb-3">
             <span className="input-group-text" id="email-addon"><i className='bi bi-envelope-at'></i></span>
            <input className={'form-control' + (formData.email.length == 0 ? "" : valids.email ? "is-valid" : "is-invalid")}
@@ -51,11 +71,18 @@ export default function SignUp() {
             </div>
         </div>
         <div className="input-group mb-3">
+            <span className="input-group-text" id="phone-addon"><i className='bi bi-telephone'></i></span>
+           <input className='form-control'
+                type="text" placeholder="0976012045" 
+                value={formData.phone} onChange={e => setFormData({ ...formData, phone:e.target.value})}
+                aria-label="Username" aria-describedby="basic-addon1" />
+        </div>
+        <div className="input-group mb-3">
             <span className="input-group-text" id="login-addon"><i className='bi bi-lock'></i></span>
            <input className='form-control'
                 type="text" placeholder="Login" 
                 value={formData.login} onChange={e => setFormData({ ...formData, login:e.target.value})}
-                aria-label="Username" aria-describedby="basic-addon1" />
+                aria-label="Username" aria-describedby="login-addon" />
         </div>
         <div className="input-group mb-3">
             <span className="input-group-text" id="password-addon"><i className='bi bi-key'></i></span>
@@ -80,7 +107,10 @@ export default function SignUp() {
             <input type="text" className='form-control' aria-label='agree with rules'
                 value="I'm agree with rules" readOnly />
         </div>
-        <button className={`btn ${isFormValid ? 'btn-success' : 'btn-secondary'}`} >Registration</button>
+        <button 
+            className={`btn ${isFormValid ? 'btn-success' : 'btn-secondary'}`}
+            onClick={isFormValid ? signUpClick : undefined}
+             >Registration</button>
 
         <div className='remember-me'>
 
