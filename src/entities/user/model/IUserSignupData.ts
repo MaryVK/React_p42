@@ -8,3 +8,6 @@ export default interface IUserSignupData {
     isAgree: boolean,
 };
 
+
+
+

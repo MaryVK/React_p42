@@ -8,8 +8,9 @@ interface ICacheItem {
 }
 
 const cache:Record<string, ICacheItem> = { };
+
 export default class Request {
-    static getCached(url:string, conf?:object, fallback?:object): Promise<object> {
+    static getCachedOld(url:string, conf?:object, fallback?:object): Promise<object> {
         return new Promise((resolve, reject) => {
              // url - адрес запроса (со всеми параметрами)
         // выступает в роли для кэша
@@ -45,4 +46,37 @@ export default class Request {
     });
 
     }
+
+    static getCached(url:string, conf?:object, fallback?:object): Promise<object> {
+    // url - адрес запроса (со всеми параметрами)
+        // выступает в роли для кэша
+ return new Promise((resolve, reject) => {
+        // перед запросом проверяем есть ли сохранённый кэш
+        if(typeof cache[url] != 'undefined') {
+            if(cache[url].expires > new Date().getTime()) {
+                console.log(url, "Cache used");
+                resolve(cache[url].responseBody);
+                return;
+
+            }
+        }
+
+        if(url.startsWith('/')) {  // сокращенный (относительный) адрес
+             // добавляем адрес бекенда
+             url = "https://localhost:7149/api" + url;
+        }
+        fetch(url, conf)
+        .then(r =>  r.json())   // REST - это точно JSON
+        .then(j => {
+
+            cache[url] = {
+                responseBody: j,
+                expires: new Date().getTime() + 10000
+            }
+            resolve(j);
+        })
+        .catch(reject);
+    });
+}
+
 }
